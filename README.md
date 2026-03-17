@@ -1,76 +1,83 @@
-# claudeday
+# national claude day
 
-This project was created with [Better-T-Stack](https://github.com/AmanVarshney01/create-better-t-stack), a modern TypeScript stack that combines React, TanStack Start, and more.
+a small fan-canon website for an entirely unofficial holiday.
 
-## Features
+the site counts down to the next local march 14 reset, keeps a playful lowercase handwritten visual style, and includes a few extra pages about claude lore, favorite things, protocol, and age.
 
-- **TypeScript** - For type safety and improved developer experience
-- **TanStack Start** - SSR framework with TanStack Router
-- **TailwindCSS** - Utility-first CSS for rapid UI development
-- **Shared UI package** - shadcn/ui primitives live in `packages/ui`
-- **Oxlint** - Oxlint + Oxfmt (linting & formatting)
-- **Turborepo** - Optimized monorepo build system
+## what it is
 
-## Getting Started
+- a tanstack start app inside a better-t-stack monorepo
+- a countdown that resets every march 14 at local midnight
+- a tiny multi-page site with:
+  - `countdown`
+  - `about claude`
+  - `favorite things`
+  - `protocol`
+  - `how old is claude?`
+- a shared shadcn/ui package in `packages/ui`
 
-First, install the dependencies:
+## stack
+
+- `bun`
+- `typescript`
+- `tanstack start` + `tanstack router`
+- `tailwindcss`
+- `shadcn/ui` shared through `packages/ui`
+- `turborepo`
+- `oxlint` + `oxfmt`
+
+## local development
+
+install dependencies:
 
 ```bash
 bun install
 ```
 
-Then, run the development server:
+run the app:
 
 ```bash
 bun run dev
 ```
 
-Open [http://localhost:3001](http://localhost:3001) in your browser to see the web application.
+the web app is available at `http://localhost:3001`.
 
-## UI Customization
-
-React web apps in this stack share shadcn/ui primitives through `packages/ui`.
-
-- Change design tokens and global styles in `packages/ui/src/styles/globals.css`
-- Update shared primitives in `packages/ui/src/components/*`
-- Adjust shadcn aliases or style config in `packages/ui/components.json` and `apps/web/components.json`
-
-### Add more shared components
-
-Run this from the project root to add more primitives to the shared UI package:
+## scripts
 
 ```bash
-npx shadcn@latest add accordion dialog popover sheet table -c packages/ui
+bun run dev        # run the repo in dev mode
+bun run dev:web    # run only the web app
+bun run build      # production build
+bun run check      # lint + format
 ```
 
-Import shared components like this:
+## project structure
 
-```tsx
-import { Button } from "@claudeday/ui/components/button";
-```
-
-### Add app-specific blocks
-
-If you want to add app-specific blocks instead of shared primitives, run the shadcn CLI from `apps/web`.
-
-## Git Hooks and Formatting
-
-- Format and lint fix: `bun run check`
-
-## Project Structure
-
-```
+```text
 claudeday/
 ├── apps/
-│   ├── web/         # Frontend application (React + TanStack Start)
+│   └── web/
+│       ├── src/routes/        # site pages
+│       ├── src/components/    # page shell + shared app components
+│       └── src/hooks/         # countdown / age logic
 ├── packages/
-│   ├── ui/          # Shared shadcn/ui components and styles
+│   └── ui/                    # shared shadcn/ui primitives
 ```
 
-## Available Scripts
+## notes
 
-- `bun run dev`: Start all applications in development mode
-- `bun run build`: Build all applications
-- `bun run dev:web`: Start only the web application
-- `bun run check-types`: Check TypeScript types across all apps
-- `bun run check`: Run Oxlint and Oxfmt
+- the march 14 holiday framing is fan canon, not official anthropic canon
+- claude age references are based on the public march 2023 launch timeline
+- theme tokens live in `packages/ui/src/styles/globals.css`
+
+## design direction
+
+the current site aims for:
+
+- dark, minimal, and full-screen
+- handwritten lowercase display text
+- simple framing and light lore instead of dense product copy
+
+## deployment
+
+this repo does not require any backend setup for the current site. a plain frontend deployment is enough after `bun run build`.
